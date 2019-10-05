@@ -5,10 +5,10 @@
   1.Prims MST Algorithm
   
   
-  2.Kruskals MST Alorithm
+  2.Kruskals MST Algorithm
   
   
-  3.Dijkstras Single Source Shortest Path Alorithm
+  3.Dijkstras Single Source Shortest Path Algorithm
   
   
-  4.Vertex Cover Approximation Alorithm
+  4.Vertex Cover Approximation Algorithm
