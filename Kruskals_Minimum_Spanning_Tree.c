@@ -124,4 +124,5 @@ int main()
 
 	kruskals(graph, x);
 	return 0;
+	
 }

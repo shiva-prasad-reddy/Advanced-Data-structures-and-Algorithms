@@ -122,4 +122,5 @@ int main()
 
 	prims(graph, 0, x);
 	return 0;
+	
 }

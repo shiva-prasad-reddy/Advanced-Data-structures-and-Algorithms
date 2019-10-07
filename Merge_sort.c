@@ -67,4 +67,5 @@ int main()
 	for(i = 0; i < n; i++) printf("%d,\t",array[i]);
 	printf("\n");
 	return 0;
+	
 }
