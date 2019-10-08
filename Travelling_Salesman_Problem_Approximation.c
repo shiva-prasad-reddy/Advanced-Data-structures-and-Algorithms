@@ -17,7 +17,7 @@ struct tsp_node
 };
 
 
-
+//FIBONACCI HEAP
 //########################################################################
 
 struct node
@@ -248,10 +248,10 @@ struct tsp_node **createGraph(int vertices)
 	for(i = 0; i < vertices; i++)
 	{
 		temp = last = NULL;
-		for(j = i+1; j < vertices; j++)
+		for(j = 0; j < vertices; j++)
 		{
-			//if(i == j)
-			//	continue;
+			if(i == j)
+				continue;
 
 			printf("[ %d ~ %d ] = ", i, j);
 			scanf("%d",&weight);
@@ -328,7 +328,7 @@ struct tsp_node **MST_Prims(struct tsp_node **graph, int source, int vertices)
 			temp = graph[source];
 			while(temp)
 			{
-				INSERT(heap, newNode(temp));
+				if(visited[temp->to] == FALSE)	INSERT(heap, newNode(temp));
 				temp = temp->link;
 			}
 			visited[source] = TRUE;

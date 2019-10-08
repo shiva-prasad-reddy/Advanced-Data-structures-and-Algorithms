@@ -1,11 +1,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct
+struct node;
+
+struct node
 {
 	int a;
 	int b;
-}node;
+};
 
 void main()
 {
@@ -23,11 +25,11 @@ void main()
 	*/
 
 
-	node *a = malloc(sizeof(node));
+	struct node *a = malloc(sizeof(struct node));
 
 
 
-	node *b = malloc(sizeof(node));
+	struct node *b = malloc(sizeof(struct node));
 /*
 
 	printf("%p\n", a);
@@ -63,6 +65,46 @@ void main()
 	a->a = 100;  //b = a would reflect the change and creates a memory lekage problem
 	printf("%d %d\n", b->a, b->b);
 
+	
+	struct node *(arr[10]);
+	arr[1] = b;
+	printf("Success array of pointers %d\n",arr[1]->a);
+	struct node *array[10];
+	array[1] = b;
+	printf("Success array of pointers %d\n",array[1]->a);
 
+//	struct node (*aarr)[10]; //ERROR DECLARATION struct node *arr;	
+	//struct node aarr[10];
+	//*(&aarr[1]) = *b; //########### for struct node aarr[10];
+	
+	//aarr[0]->a = 111;
+	//printf("Success array of nodes %d\n",arr[0]->a);
+
+	int (*A)[10]; ///  pointer which contains pointer to an array of 10 integers
+
+	int x[] = {1,2,3};
+	(*A)[1] = 2;
+
+	int i;
+	for(i=0; i<10; i++) (*A)[i] = i * i;
+
+	for(i=0; i<10; i++) printf("Success array of nodes %d\n",(*A)[i]);
+
+
+
+		/*
+
+	int (*A)[10]; /// pointer which contains pointer to an array of 10 integers
+
+int x[] = {1,2,3};
+
+	int *pointer;
+	pointer = x;
+
+	//access 
+	(*pointer)[index]
+
+
+		*/
 
 }
