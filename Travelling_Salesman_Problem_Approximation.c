@@ -285,6 +285,7 @@ void addEdgeToMSTGraph(struct tsp_node **graph, struct tsp_node *temp)
 	*nodeToadd =  *temp;
 	nodeToadd->link = NULL;
 
+	/*
 	temp = graph[nodeToadd->from];
 	if(temp)
 	{
@@ -295,6 +296,14 @@ void addEdgeToMSTGraph(struct tsp_node **graph, struct tsp_node *temp)
 	{
 		graph[nodeToadd->from] = nodeToadd;
 	}
+	*/
+
+	//O(1)
+	if(graph[nodeToadd->from])
+		nodeToadd->link = graph[nodeToadd->from];
+	
+	graph[nodeToadd->from] = nodeToadd;
+
 
 }
 
