@@ -1,6 +1,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
+
+
+// <stdio.h> predefined header file starts search from header files located directory
+// "stdio.h" user-defined header file starts search from current directory
+
+
+
 struct node;
 
 struct node
