@@ -57,7 +57,7 @@ int find_set_containing_max_elements(int **container, int no_of_sets)
 //	complexity can be reduced by taking the answer_set and 
 //	not visiting the answer_set which is already considered
 //	if(answer_set[j] == TRUE) continue; //not much complexity reduced --- even ERROR
-//															because making it TRUE before removin elements
+//	because making it TRUE before removing elements
 
 void remove_elements(int **container, int no_of_sets, int max_set_index)
 {
