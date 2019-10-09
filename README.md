@@ -55,3 +55,6 @@
 
 
   18.Tries
+
+
+  19.Set Cover Approximation Algorithm
