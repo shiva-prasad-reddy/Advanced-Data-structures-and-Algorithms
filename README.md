@@ -58,3 +58,12 @@
 
 
   19.Set Cover Approximation Algorithm
+
+
+  20.Disjoint Set
+
+
+  21.Rod Cut Problem
+
+
+  22.Subset Sum Problem
