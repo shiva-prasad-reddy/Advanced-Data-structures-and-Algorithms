@@ -47,7 +47,7 @@ struct node *merge(struct node *one, struct node *two, int T)
 	//ordered merged list to be returned
 	while(one && two)
 	{
-		if(one->data > T || two->data > T) break;
+		//if(one->data > T || two->data > T) break;
 
 		if(one->data < two->data)
 		{
@@ -73,7 +73,7 @@ struct node *merge(struct node *one, struct node *two, int T)
 			free(temp);
 		}
 	}
-	
+	/*
 	while(one && one->data < T)
 	{
 		last->next = one;
@@ -86,9 +86,10 @@ struct node *merge(struct node *one, struct node *two, int T)
 		last = two;
 		two = two->next;
 	}
-	//if(one) last->next = one;
-	//if(two) last->next = two;
-	last->next = NULL;
+	*/
+	if(one) last->next = one;
+	if(two) last->next = two;
+	//last->next = NULL;
 
 	return head;
 }

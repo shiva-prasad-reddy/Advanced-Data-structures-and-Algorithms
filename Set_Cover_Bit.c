@@ -4,10 +4,20 @@
 
 #define TRUE 1
 #define FALSE 0
-#define MAX_SET_MEMBERS 20
+#define ARRAY_SIZE 2
+#define int unsigned int
 
 //IN ANY SET AT INDEX [0] THE NO. OF ELEMENTS PRESENT IN THAT SET ARE STORED
 //CONTAINER[0] is an universal set
+
+
+int addElementToSet(int set, int element)
+{
+	int add = 1;
+	add = add << element;
+	return set + add;
+}
+
 int **initializeSets(int no_of_sets)
 {
 	int **container = NULL, *set = NULL;
@@ -19,7 +29,7 @@ int **initializeSets(int no_of_sets)
 		printf("No. of elements in set [ %d ] >>> ", i);
 		scanf("%d", &input);
 
-		set = (int *)calloc(MAX_SET_MEMBERS, sizeof(int));
+		set = (int *)calloc(ARRAY_SIZE, sizeof(int));
 		set[0] = input;
 		container[i] = set;
 
@@ -27,20 +37,19 @@ int **initializeSets(int no_of_sets)
 		for(int j = 1; j <= set[0]; j++)
 		{
 			scanf("%d", &input);
-			set[input] = TRUE;
+			set[1] = addElementToSet(set[1], input);
 		}
 		printf("\n");
 	}
 
+	/*
 	for(int i = 0; i < no_of_sets; i++)
 	{
 		set = container[i];
-		printf("\n Elements in Set [ %d ] >> ", i);
-		for(int j = 1; j < MAX_SET_MEMBERS; j++)
-			if(set[j] == TRUE) printf("%d, ", j);
-
+		printf("\n Elements in Set [ %d ] >> [ %d ]", i, set[1]);
 	}
 	printf("\n");
+	*/
 	return container;
 }
 
@@ -59,24 +68,31 @@ int find_set_containing_max_elements(int **container, int no_of_sets)
 //	if(answer_set[j] == TRUE) continue; //not much complexity reduced --- even ERROR
 //	because making it TRUE before removing elements
 
+int countNoOfOneBits(int X)
+{
+	int count  = 0;
+	while(X != 0)
+	{
+		if( X & 1 ) count++;
+		X = X >> 1;
+	}
+	return count;
+}
+
 void remove_elements(int **container, int no_of_sets, int max_set_index)
 {
-	int *max_set = container[max_set_index];
-	for(int i = 1; i < MAX_SET_MEMBERS; i++)
-	{
-		if(max_set[i] == TRUE)
-		{
-			for(int j = 0; j < no_of_sets; j++)
-			{
-				if(container[j][i] == TRUE)
-				{
-					container[j][i] = FALSE;
-					container[j][0] = container[j][0] - 1;
-				}
-			}
+	int max_set = container[max_set_index][1];
 
+	for(int i = 0; i < no_of_sets; i++)
+	{
+		if( (max_set & container[i][1]) != 0)
+		{
+			//Bit level removal of elements
+			container[i][1] = container[i][1] & (~max_set);
+			container[i][0] = countNoOfOneBits(container[i][1]);
 		}
 	}
+
 }
 
 void set_covering_approximation_algorithm(int **container, int no_of_sets)
@@ -91,7 +107,7 @@ void set_covering_approximation_algorithm(int **container, int no_of_sets)
 		remove_elements(container, no_of_sets, max_set_index);
 	}
 
-	printf("\n\nApprox. Answer Set for Set Covering Problem\n");
+	printf("\nApprox. Answer Set for Set Covering Problem\n");
 	for(int i = 1; i < no_of_sets; i++)
 		if(answer_set[i] == TRUE) printf("SET [ %d ]\n", i);
 
