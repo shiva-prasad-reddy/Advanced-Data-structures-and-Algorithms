@@ -129,11 +129,29 @@ void preorder(struct tsp_node **mst, int source, struct node **Map)
 		temp = temp->link;
 	}
 
-	//extra
+
+	//removing fibnoacci nodes 
+	//recursive approach so every node gets visited once and memory is freed
 	free(Map[source]);
 	Map[source] = NULL;
+	
 }
 
+
+void freeMemory(struct tsp_node **graph, int vertices)
+{
+	struct tsp_node *temp = NULL;
+	int i;	
+	for(i = 0; i< vertices; i++)
+	{
+		while(graph[i])
+		{
+			temp = graph[i];
+			graph[i] = graph[i]->link;
+			free(temp);
+		}
+	}
+}
 
 int main()
 {
@@ -172,10 +190,12 @@ int main()
 	preorder(mst, source, Map);
 	printf("%d\n\n", source);
 
-	//extra
+	//Memory CleanUp
 	free(heap);
+	freeMemory(graph, vertices);
 	free(graph);
 	free(Map);
+	freeMemory(mst, vertices);
 	free(mst);
 
 	return 0;
