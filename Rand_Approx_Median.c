@@ -24,6 +24,7 @@ void rand_approx_median1(int *arr, int N, int delta)
 		printf("Failure\n");
 }
 
+//IT is a Mixture
 //MONTE CARLO RANDOMIZATION APPROXIMATION
 //Running Time Guaranteed
 //Correctness Not Guaranteed
