@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<math.h>
 
 #define ITEMS 4
 
@@ -15,6 +16,43 @@ int minimum(int a, int b)
 		return a;
 	return b;
 }
+
+float max(float *profits)
+{
+	int max = 0;
+	for(int i = 1; i < ITEMS; i++)
+		if(profits[i] > profits[max]) max = i;
+	return profits[max];
+}
+
+float rounding_and_scaling(float *profits, float e)
+{
+	//OPT is replaced by LB which is max(profits)
+	float LB = max(profits);
+
+	float mul = (e/ITEMS)*LB;
+
+	float temp;
+	//rounding to each profit(xi) to the next larger multiple of (ε/n)·opt.
+	for(int i = 0; i < ITEMS; i++)
+	{
+		temp = fmodf(profits[i], mul);
+		if(temp != 0)
+		{
+			profits[i] = profits[i] + temp;
+		}
+	}
+
+	//scaling
+	for(int i = 0; i < ITEMS; i++)
+	{
+		profits[i] = profits[i] / mul;
+	}
+
+	return mul;
+
+}
+
 
 void MaXProfit(int *profits, int *weights)
 {
@@ -74,19 +112,30 @@ void MaXProfit(int *profits, int *weights)
 	
 		printf("FOR CAPACITY = %d MAX PROFIT = %d\n", capacity, p);
 
-		while(p != 0)
+		while(i >= 0 && p > 0)
 		{
-			if(weights[i] <= capacity && A[i][p] >= weights[i])
+			//printf("Se---%d\n", A[i-1][p - profits[i]]);
+
+			if(i == 0)
 			{
+				//printf("%d and %d\n", A[i][p], weights[i]);
 				printf("Item %d included.\n", i);
-				capacity = capacity - weights[i];
 				p = p - profits[i];
 			}
-			i--;
+			else
+				if(weights[i] + A[i-1][p - profits[i]] < A[i-1][p])
+				{
+					printf("Item %d included.\n", i);
+					p = p - profits[i];
+				}
+			
+			i--;			
 		}
 		printf("=============================\n");
 	}
 }
+
+
 
 int main()
 {
@@ -94,6 +143,27 @@ int main()
 	int weights[ITEMS] = {3, 1, 2, 4};
 	int profits[ITEMS] = {1, 0, 4, 2};
 
+	/*
+	float profits[ITEMS] = {1.3, 0, 4.6, 2.7};
+	printf("Elements ::: \n");
+	for(int i = 0; i < ITEMS; i++)
+	{
+		printf("%f\t", profits[i]);
+	}
+	printf("\n");
+
+	float e = 0.5;
+	printf("VALUE USED = %f\n", rounding_and_scaling(profits, e));
+
+
+	printf("Elements ::: \n");
+	for(int i = 0; i < ITEMS; i++)
+	{
+		printf("%f\t", profits[i]);
+	}
+	printf("\n");
+
+	*/
 	MaXProfit(profits, weights);
 
 	return 0;
