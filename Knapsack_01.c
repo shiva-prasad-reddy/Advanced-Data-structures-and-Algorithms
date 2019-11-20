@@ -106,27 +106,6 @@ int main()
 	int weights[ITEMS] = {3, 1, 2, 4};
 	int profits[ITEMS] = {1, 0, 4, 2};
 
-	/*
-	float profits[ITEMS] = {1.3, 0, 4.6, 2.7};
-	printf("Elements ::: \n");
-	for(int i = 0; i < ITEMS; i++)
-	{
-		printf("%f\t", profits[i]);
-	}
-	printf("\n");
-
-	float e = 0.5;
-	printf("VALUE USED = %f\n", rounding_and_scaling(profits, e));
-
-
-	printf("Elements ::: \n");
-	for(int i = 0; i < ITEMS; i++)
-	{
-		printf("%f\t", profits[i]);
-	}
-	printf("\n");
-
-	*/
 	MaXProfit(profits, weights);
 
 	return 0;
