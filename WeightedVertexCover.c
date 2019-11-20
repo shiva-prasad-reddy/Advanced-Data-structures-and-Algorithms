@@ -217,11 +217,16 @@ int main()
 	}
 	
 	printf("\n======= Vertex Cover =======\n");
+	float total_weight = 0;
 	for(int i = 0; i < tab_->columns; i++)
 	{
-		if(tab->matrix[tab->rows-1][tab_->rows-1+i] == 1)
+		if(tab->matrix[tab->rows-1][tab_->rows-1+i] >= 0.5)
+		{
 			printf("Vertex %d is included\n", i);
+			total_weight += tab_->matrix[tab_->rows-1][i];
+		}
 	}
+	printf("\nMinimum weight that could be achieved  = [ %f ]\n", total_weight);
 	printf("\n");
 	
 	free(tab_);
