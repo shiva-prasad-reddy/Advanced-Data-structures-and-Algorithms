@@ -60,7 +60,7 @@ void traverse(struct node *list)
 int maximum(struct node *list)
 {
 
-    int high = -1000;
+    int high = -1000; //-1 is the best choice
     while(list != NULL)
     {
         if(list->data > high)

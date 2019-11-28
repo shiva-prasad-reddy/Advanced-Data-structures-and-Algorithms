@@ -8,6 +8,8 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
+#include<math.h>
 
 struct tableau
 {
@@ -15,6 +17,9 @@ struct tableau
 	int rows;
 	int columns;
 };
+
+
+
 
 int find_the_index_of_highest_negative_coefficient(float *list, int columns)
 {
@@ -213,8 +218,42 @@ void freeMemory(struct tableau *tab, int rows)
 }
 
 
+void randomizedRounding_1(struct tableau *tab_, struct tableau *tab)
+{
+	int t = floor(2 * (log(tab_->rows-1) / log(2.7182818285)));
+
+	float threshold;
+	int *sets = calloc(tab_->columns, sizeof(int));
+
+	for(int i = 0; i < t; i++)
+	{
+		threshold = (rand() % 10) * 0.1;
+		printf("SEE --- %f -- \n", threshold);
+		for(int i = 0; i < tab_->columns; i++)
+		{
+			if(tab->matrix[tab->rows-1][tab_->rows-1+i] >= threshold)
+				sets[i] = 1;
+		}
+	}
+
+	printf("\n======= Set Cover After Randomized Rounding 1 =======\n");
+	for(int i = 0; i < tab_->columns; i++)
+	{
+		if(sets[i] == 1)
+			printf("set %d is included\n", i);
+	}
+	printf("\n");
+
+
+
+	free(sets);
+
+}
+
+
 int main()
 {
+	srand(time(0));
 	struct tableau *tab_ = NULL;
 	tab_ = createGraphMatrix();
 
@@ -243,6 +282,7 @@ int main()
 	printf("\n");
 	
 	//still left to be done.
+	randomizedRounding_1(tab_, tab);
 
 
 	free(tab_);

@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<math.h>
-#include<stdlib.h>
 
 int build(int *arr, int *tree, int start, int end, int i)
 {

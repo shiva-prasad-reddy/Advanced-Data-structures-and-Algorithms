@@ -28,6 +28,7 @@ void hire(int *arr, int N)
 	int rdn;
 	int current = -1;
 	int total_cost = 0;
+	int cost = 2;
 	for(int i = 0; i < N; i++)
 	{
 		rdn = rand() % N;
@@ -35,11 +36,11 @@ void hire(int *arr, int N)
 		{
 			//fire and hire
 			current = rdn;
-			total_cost++;
+			total_cost += cost;
 		}
 	}
 	printf("Candidate %d is hired\n", current);
-	printf("Total Cost = %d and Expected Cost = %f and Worst Case Cost = %d\n", total_cost, (1 * log(N)), (1 * N));
+	printf("Total Cost = %d and Expected Cost = %f and Worst Case Cost = %d\n", total_cost, (cost * log(N)), (1 * N));
 }
 
 int main()
