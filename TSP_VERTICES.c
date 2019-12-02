@@ -82,6 +82,8 @@ void addEdgeToMSTGraph(struct tsp_node **graph, int parentVertex, int vertex, in
 // --- X can be made O(1) with additional array to keep track of last pointers
 // --- O(E + V*log(V))
 
+// --- O( (E + V) * log(V) ) -- if min heap is used for prims for finding mst
+
 struct tsp_node **MST_Prims(struct FbHeap *heap, struct tsp_node **graph, struct node **Map, int vertices)
 {
 	

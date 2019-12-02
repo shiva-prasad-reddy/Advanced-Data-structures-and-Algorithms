@@ -155,7 +155,8 @@ int main()
 {
 	int U[] = {1, 4, 5, 8, 11};
 	int e = 0.40;
-	int delta = e / 8;
+	int n = 5;
+	int delta = e / (2 * n);
 	struct node *set = findSumSet(newNode(0, 0), U, 5, delta, 20);
 	printf("Elements in SumSet >>> \n");
 	while(set)
