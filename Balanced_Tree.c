@@ -476,7 +476,7 @@ void delete(struct node *tree, int key, int fromRoot)
 					if(childPosition != 0 && (tree->child[childPosition-1])->N > MIN_KEYS)
 						//borrow from left sibling which has tolerance
 						//if the node exists in extreme left most child it wont execute this block
-						//cyclicaly shift on key and one child point
+						//cyclicaly shift one key and one child point
 						temp = case_3_b(tree, childPosition);
 					else 
 						temp = case_3_c(tree, childPosition);
